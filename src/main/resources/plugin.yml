@@ -1,0 +1,9 @@
+name: JustFly
+version: 0.1
+
+main: io.github.radcraftplay.justfly.JustFly
+
+commands:
+  fly:
+    description: Allows player to fly
+    usage: /fly
