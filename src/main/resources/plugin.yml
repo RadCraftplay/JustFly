@@ -7,3 +7,14 @@ commands:
   fly:
     description: Allows player to fly
     usage: /fly
+
+permissions:
+  justfly.*:
+    description: Gives access to all JustFly commands
+    children:
+      justfly.fly: true
+      justfly.flyothers: true
+  justfly.fly:
+    description: Lets player enable/disable fly for self
+  justfly.flyothers:
+    description: Lets player enable/disable fly for other players
