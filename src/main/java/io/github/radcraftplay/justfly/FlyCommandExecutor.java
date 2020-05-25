@@ -9,7 +9,8 @@ import org.bukkit.entity.Player;
 
 public class FlyCommandExecutor implements CommandExecutor {
 
-    private Server _server;
+    private final Server _server;
+    static final String NO_PERMISSIONS_MESSAGE = ChatColor.RED + "You do not have permissions to do this!";
 
     public FlyCommandExecutor(Server server) {
         _server = server;
@@ -17,28 +18,54 @@ public class FlyCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player target = null;
+
         if (!command.getName().equalsIgnoreCase("fly"))
             return false;
-        if (args.length > 0)
+
+        if (args.length == 1) {
+            if (!checkPermission(sender, "justfly.flyothers"))
+                return true;
+            target = _server.getPlayer(args[1]);
+        } else if (args.length == 0) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("This command can be run only by players!");
+                return true;
+            }
+            if (!checkPermission(sender, "justfly.fly"))
+                return true;
+
+            target = (Player)sender;
+        } else {
             return false;
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("This command can be run only by players!");
-            return true;
         }
+
+        if (target == null) {
+            sender.sendMessage(String.format("Unable to find player with nickname '%s'", args[1]));
+            return false;
+        }
+
         if (!_server.getAllowFlight()) {
             sender.sendMessage(ChatColor.RED + "Flying is disabled on this server!");
             return true;
         }
 
-        Player target = (Player)sender;
-
         if (target.getAllowFlight()) {
             target.setAllowFlight(false);
-            target.sendMessage("Flying is now disabled!");
+            target.sendMessage("Flying is now" + ChatColor.RED + " disabled!");
         }
         else {
             target.setAllowFlight(true);
-            target.sendMessage("Flying is now enabled!");
+            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled!");
+        }
+
+        return true;
+    }
+
+    Boolean checkPermission(CommandSender sender, String permission) {
+        if (!sender.hasPermission(permission)) {
+            sender.sendMessage(NO_PERMISSIONS_MESSAGE);
+            return true;
         }
 
         return true;
