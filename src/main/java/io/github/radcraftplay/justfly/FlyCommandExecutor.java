@@ -65,7 +65,7 @@ public class FlyCommandExecutor implements CommandExecutor {
     Boolean checkPermission(CommandSender sender, String permission) {
         if (!sender.hasPermission(permission)) {
             sender.sendMessage(NO_PERMISSIONS_MESSAGE);
-            return true;
+            return false;
         }
 
         return true;
