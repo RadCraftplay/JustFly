@@ -6,7 +6,7 @@ main: io.github.radcraftplay.justfly.JustFly
 commands:
   fly:
     description: Allows player to fly
-    usage: /fly
+    usage: "Usage: /fly [player]"
 
 permissions:
   justfly.*:

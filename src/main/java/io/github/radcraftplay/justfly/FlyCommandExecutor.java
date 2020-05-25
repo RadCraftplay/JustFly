@@ -26,7 +26,7 @@ public class FlyCommandExecutor implements CommandExecutor {
         if (args.length == 1) {
             if (!checkPermission(sender, "justfly.flyothers"))
                 return true;
-            target = _server.getPlayer(args[1]);
+            target = _server.getPlayer(args[0]);
         } else if (args.length == 0) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage("This command can be run only by players!");
@@ -41,7 +41,7 @@ public class FlyCommandExecutor implements CommandExecutor {
         }
 
         if (target == null) {
-            sender.sendMessage(String.format("Unable to find player with nickname '%s'", args[1]));
+            sender.sendMessage(String.format("Unable to find player with nickname '%s'", args[0]));
             return false;
         }
 
