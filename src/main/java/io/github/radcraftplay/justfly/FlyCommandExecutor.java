@@ -64,11 +64,11 @@ public class FlyCommandExecutor implements CommandExecutor {
 
         if (target.getAllowFlight()) {
             target.setAllowFlight(false);
-            target.sendMessage("Flying is now" + ChatColor.RED + " disabled!");
+            target.sendMessage("Flying is now" + ChatColor.RED + " disabled");
         }
         else {
             target.setAllowFlight(true);
-            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled!");
+            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled");
         }
 
         return true;
@@ -97,7 +97,7 @@ public class FlyCommandExecutor implements CommandExecutor {
                     + ChatColor.BLUE
                     + target.getName());
 
-            target.sendMessage("Flying is now" + ChatColor.RED + " disabled!");
+            target.sendMessage("Flying is now" + ChatColor.RED + " disabled");
         }
         else {
             target.setAllowFlight(true);
@@ -109,7 +109,7 @@ public class FlyCommandExecutor implements CommandExecutor {
                     + ChatColor.BLUE
                     + target.getName());
 
-            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled!");
+            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled");
         }
 
         return true;
