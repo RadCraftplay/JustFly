@@ -10,7 +10,10 @@ import org.bukkit.entity.Player;
 public class FlyCommandExecutor implements CommandExecutor {
 
     private final Server _server;
+
     static final String NO_PERMISSIONS_MESSAGE = ChatColor.RED + "You do not have permissions to do this!";
+    static final String FLYING_ENABLED_MESSAGE = "Flying is now" + ChatColor.GREEN + " enabled";
+    static final String FLYING_DISABLED_MESSAGE = "Flying is now" + ChatColor.RED + " disabled";
 
     public FlyCommandExecutor(Server server) {
         _server = server;
@@ -64,11 +67,11 @@ public class FlyCommandExecutor implements CommandExecutor {
 
         if (target.getAllowFlight()) {
             target.setAllowFlight(false);
-            target.sendMessage("Flying is now" + ChatColor.RED + " disabled");
+            target.sendMessage(FLYING_DISABLED_MESSAGE);
         }
         else {
             target.setAllowFlight(true);
-            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled");
+            target.sendMessage(FLYING_ENABLED_MESSAGE);
         }
 
         return true;
@@ -97,7 +100,7 @@ public class FlyCommandExecutor implements CommandExecutor {
                     + ChatColor.BLUE
                     + target.getName());
 
-            target.sendMessage("Flying is now" + ChatColor.RED + " disabled");
+            target.sendMessage(FLYING_DISABLED_MESSAGE);
         }
         else {
             target.setAllowFlight(true);
@@ -109,7 +112,7 @@ public class FlyCommandExecutor implements CommandExecutor {
                     + ChatColor.BLUE
                     + target.getName());
 
-            target.sendMessage("Flying is now" + ChatColor.GREEN + " enabled");
+            target.sendMessage(FLYING_ENABLED_MESSAGE);
         }
 
         return true;
