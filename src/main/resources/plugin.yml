@@ -15,6 +15,6 @@ permissions:
       justfly.fly: true
       justfly.flyothers: true
   justfly.fly:
-    description: Lets player enable/disable fly for self
+    description: Lets player enable/disable fly for themselves
   justfly.flyothers:
     description: Lets player enable/disable fly for other players
